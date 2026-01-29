@@ -16,3 +16,113 @@ Done
 Done,view full log,Reboot now
 
 
+
+Wordpress:დაყენება
+
+
+🔹 1. Hostname-ის დაყენება (BASH)
+sudo nano /etc/hostname
+
+
+შიგნით წერ:
+
+test.netacademy.ge
+
+sudo nano /etc/hosts
+
+
+შიგნით წერ:
+
+127.0.0.1    localhost
+127.0.1.1    test.netacademy.ge wordpress
+
+🔹 2. იუზერის შექმნა და sudo უფლებები (BASH)
+sudo adduser kakha
+
+sudo usermod -aG sudo kakha
+
+groups kakha
+
+🔹 3. სისტემის განახლება (BASH)
+sudo apt update && sudo apt dist-upgrade -y
+
+reboot
+
+ssh kakha@68.183.216.77
+
+🔹 4. Apache ვებსერვერი (BASH)
+sudo apt install apache2 -y
+
+systemctl status apache2
+
+🔹 5. MariaDB ინსტალაცია და ბაზის შექმნა
+▶ ბაზაში შესვლა (BASH)
+sudo apt install mariadb-server -y
+
+sudo mariadb
+
+▶ უკვე SQL კონსოლში ხარ (MariaDB [(none)]>)
+CREATE DATABASE wp DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+GRANT ALL PRIVILEGES ON wp.* TO wp_user@localhost IDENTIFIED BY '#Sangu1234';
+
+FLUSH PRIVILEGES;
+
+EXIT;
+
+🔹 6. WordPress-ის ჩამოტვირთვა (BASH)
+wget https://wordpress.org/latest.zip
+
+sudo apt install unzip -y
+
+unzip latest.zip
+
+rm latest.zip
+
+sudo chown -R www-data:www-data wordpress
+
+sudo mv wordpress /var/www/
+
+🔹 7. Apache VirtualHost (BASH)
+sudo nano /etc/apache2/sites-available/wordpress.conf
+
+
+შიგნით წერ:
+
+<VirtualHost *:80>
+    DocumentRoot /var/www/wordpress
+    <Directory /var/www/wordpress>
+        Options FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+
+sudo a2ensite wordpress.conf
+
+sudo a2dissite 000-default.conf
+
+sudo a2enmod rewrite
+
+sudo systemctl restart apache2
+
+🔹 8. PHP და საჭირო ბიბლიოთეკები (BASH)
+sudo apt install libapache2-mod-php php-curl php-gd php-intl php-mbstring php-mysql php-soap php-xml php-xmlrpc php-zip -y
+
+sudo systemctl restart apache2
+
+🔹 9. SSL სერტიფიკატი (Certbot) (BASH)
+sudo snap install core
+
+sudo snap refresh core
+
+sudo snap install --classic certbot
+
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+sudo certbot --apache
+
+
+(აქ ტერმინალში პასუხობ: Y, N, და წერ დომენს)
+
+
