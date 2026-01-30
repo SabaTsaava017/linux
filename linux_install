@@ -32,7 +32,14 @@ Done,view full log,Reboot now
 12.apt install ubuntu-desktop -y
 13.reboot
 
-
+როგორ გააგრძელებ Desktop-ზე
+შედიხარ Desktop-ში
+ხსნი Terminal (Ctrl+Alt+T)
+აწერ ზუსტად იმავე ბრძანებებს, რაც ლექტორმა მოგცა
+ბოლოს ბრაუზერში გახსნი:
+http://localhost
+ან
+http://შენი_IP
 
 
 
