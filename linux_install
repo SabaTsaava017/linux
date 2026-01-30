@@ -14,6 +14,25 @@ Done
 
 შემდეგი ნაბჯი:
 Done,view full log,Reboot now
+შეგვიძლია დავიწყოთ ვორდპრესის დაყენება.
+
+
+ლინუქსის ვიზუალის აწყობა(სურვილისამებრ):
+1.sudo -s
+2.apt update
+3.apt upgrade -y
+4.ifconfig
+5.apt install net-tools -y
+6.ifconfig
+7.apt install mc
+8.n
+9.apt install mc -y
+10.mc
+11.f10 გამოსვლა
+12.apt install ubuntu-desktop -y
+13.reboot
+
+
 
 
 
