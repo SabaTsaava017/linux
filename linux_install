@@ -32,6 +32,8 @@ Done,view full log,Reboot now
 12.apt install ubuntu-desktop -y
 13.reboot
 
+
+linux desktop ზე wordpress ის დაყენება
 როგორ გააგრძელებ Desktop-ზე
 შედიხარ Desktop-ში
 ხსნი Terminal (Ctrl+Alt+T)
